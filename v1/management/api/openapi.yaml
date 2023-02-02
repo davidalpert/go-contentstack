@@ -1,0 +1,723 @@
+openapi: 3.0.0
+info:
+  description: "<p>The Content Delivery API (CDA), available at cdn.contentstack.com,\
+    \ is a read-only API used to retrieve content from your Contentstack account and\
+    \ deliver it to your web or mobile properties. Contentstack provides an OpenAPI\
+    \ JSON file that consists of a set of preconfigured REST API requests that will\
+    \ make it easy for you to get started with the Contentstack Delivery APIs and\
+    \ try out our API requests through the Swagger Editor.\n</p><p>Here are the details\
+    \ of the important information key used in this file:\n</p><table border=\"1\"\
+    >\n<tbody>\n<tr>\n\t<td>Key\n\t</td>\n\t<td>Value\n\t</td>\n</tr>\n<tr>\n\t<td>Base\
+    \ URL\n\t</td>\n\t<td>\n\t\t<ul>\n\t\t\t<li>North America: https://cdn.contentstack.io/</li>\n\
+    \t\t\t<li>Europe: https://eu-cdn.contentstack.com/</li>\n\t\t</ul>\n\t</td>\n\
+    </tr>\n<tr>\n\t<td>api_key\n\t</td>\n\t<td>\n\t\t<ul>\n\t\t\t<li>North America:&nbsp;blt02f7b45378b008ee</li>\n\
+    \t\t\t<li>Europe:&nbsp;bltd88b56bcda5594d5</li>\n\t\t</ul>\n\t</td>\n</tr>\n<tr>\n\
+    \t<td>access_token\n\t</td>\n\t<td>\n\t\t<ul>\n\t\t\t<li>North America:&nbsp;cs5b69faf35efdebd91d08bcf4</li>\n\
+    \t\t\t<li>Europe:&nbsp;cs408c732861b2aa495971ae51</li>\n\t\t</ul>\n\t</td>\n</tr>\n\
+    <tr>\n\t<td> environment\n\t</td>\n\t<td>\n\t\t<ul>\n\t\t\t<li>North America:&nbsp;production</li>\n\
+    \t\t\t<li>Europe:&nbsp;production</li>\n\t\t</ul>\n\t</td>\n</tr>\n</tbody>\n\
+    </table><p><strong>CDA OpenAPI Details:</strong>\n</p><ul>\n\t<li>Version: 2.0.2</li>\n\
+    \t<li>Last Updated: April 12, 2022</li>\n</ul>"
+  title: Contentstack Content Delivery API OpenAPI Specification
+  version: 2.0.2
+servers:
+- description: North America
+  url: https://cdn.contentstack.io
+- description: Europe
+  url: https://eu-cdn.contentstack.com
+paths:
+  /v3/content_types:
+    get:
+      description: |-
+        <p>The <code>Get all content types</code> call returns comprehensive information of all the content types available in a particular stack in your account.</p><p>To use the API Request, you'll need to use the <a href="https://www.contentstack.com/docs/developers/create-tokens/about-delivery-tokens">Delivery Token</a> of the respective environment.<br>Read more about it in <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#authentication">Authentication</a>.
+        </p><p>For more information, refer to the <a target=_blank href=https://www.contentstack.com/docs/developers/apis/content-delivery-api/#get-all-content-types>All Content Types</a> API Reference document</p><p><strong>Note</strong>: The parameter values present here correspond to the AWS North America Region. To find the values corresponding to other regions, please refer to the <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/">Content Delivery API</a> doc.<strong></strong></p>
+      operationId: getallcontenttypes
+      parameters:
+      - description: Set this to 'true' to include in response the total count of
+          content types available in your stack.
+        explode: true
+        in: query
+        name: include_count
+        required: true
+        schema:
+          example: "false"
+          type: string
+        style: form
+      - description: Set this to true to include the _branch top-level key in the
+          response. This key states the unique ID of the branch where the concerned
+          Contentstack module resides.
+        explode: true
+        in: query
+        name: include_branch
+        required: false
+        schema:
+          example: "false"
+          type: string
+        style: form
+      responses:
+        "200":
+          description: ""
+      security:
+      - api_key: []
+        access_token: []
+      summary: Get all content types
+      tags:
+      - Content types
+  /v3/content_types/{content_type_uid}:
+    get:
+      description: |-
+        <p>This call returns information of a specific content type. It returns the content type schema, but does not include its entries.</p><p>To use the API Request, you'll need to use the <a href="https://www.contentstack.com/docs/developers/create-tokens/about-delivery-tokens">Delivery Token</a> of the respective environment.<br>Read more about it in <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#authentication">Authentication</a>.
+        </p><p>For more information, refer to the <a target=_blank href=https://www.contentstack.com/docs/developers/apis/content-delivery-api/#get-a-single-content-type>Single Content Type</a> API Reference document</p><p><strong>Note</strong>: The parameter values present here correspond to the AWS North America Region. To find the values corresponding to other regions, please refer to the <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/">Content Delivery API</a> doc.<strong></strong></p>
+      operationId: getasinglecontenttype
+      parameters:
+      - explode: false
+        in: path
+        name: content_type_uid
+        required: true
+        schema:
+          example: product
+          type: string
+        style: simple
+      - description: Set this to true to include the _branch top-level key in the
+          response. This key states the unique ID of the branch where the concerned
+          Contentstack module resides.
+        explode: true
+        in: query
+        name: include_branch
+        required: false
+        schema:
+          example: "false"
+          type: string
+        style: form
+      responses:
+        "200":
+          description: ""
+      security:
+      - api_key: []
+        access_token: []
+      summary: Get a single content type
+      tags:
+      - Content types
+  /v3/global_fields:
+    get:
+      description: |-
+        <p>This call returns comprehensive information of all the global fields available in a particular stack in your account.</p><p>To use the API Request, you'll need to use the <a href="https://www.contentstack.com/docs/developers/create-tokens/about-delivery-tokens">Delivery Token</a> of the respective environment.<br>Read more about it in <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#authentication">Authentication</a>.
+        </p><p>For more information, refer to the <a target=_blank href=https://www.contentstack.com/docs/developers/apis/content-delivery-api/#get-all-global-fields>All Global Fields</a> API Reference document</p><p><strong>Note</strong>: The parameter values present here correspond to the AWS North America Region. To find the values corresponding to other regions, please refer to the <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/">Content Delivery API</a> doc.<strong></strong></p>
+      operationId: getallglobalfields
+      parameters:
+      - description: Set this to true to include the _branch top-level key in the
+          response. This key states the unique ID of the branch where the concerned
+          Contentstack module resides.
+        explode: true
+        in: query
+        name: include_branch
+        required: false
+        schema:
+          example: "false"
+          type: string
+        style: form
+      responses:
+        "200":
+          description: ""
+      security:
+      - api_key: []
+        access_token: []
+      summary: Get all global fields
+      tags:
+      - Global fields
+  /v3/global_fields/{global_field_uid}:
+    get:
+      description: |-
+        <p>This request allows you to fetch comprehensive details of a specific global field.</p><p>To use the API Request, you'll need to use the <a href="https://www.contentstack.com/docs/developers/create-tokens/about-delivery-tokens">Delivery Token</a> of the respective environment.<br>Read more about it in <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#authentication">Authentication</a>.
+        </p><p>For more information, refer to the <a target=_blank href=https://www.contentstack.com/docs/developers/apis/content-delivery-api/#get-a-single-global-field>Single Global Field</a> API Reference document</p><p><strong>Note</strong>: The parameter values present here correspond to the AWS North America Region. To find the values corresponding to other regions, please refer to the <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/">Content Delivery API</a> doc.<strong></strong></p>
+      operationId: getasingleglobalfield
+      parameters:
+      - explode: false
+        in: path
+        name: global_field_uid
+        required: true
+        schema:
+          example: seo
+          type: string
+        style: simple
+      - description: Set this to true to include the _branch top-level key in the
+          response. This key states the unique ID of the branch where the concerned
+          Contentstack module resides.
+        explode: true
+        in: query
+        name: include_branch
+        required: false
+        schema:
+          example: "false"
+          type: string
+        style: form
+      responses:
+        "200":
+          description: ""
+      security:
+      - api_key: []
+        access_token: []
+      summary: Get a single global field
+      tags:
+      - Global fields
+  /v3/content_types/{content_type_uid}/entries:
+    get:
+      description: |-
+        <p>For more information on the individual requests, click on their respective documentation links below.</p>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#get-all-entries" target=_blank>Get all entries</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#equals-operator" target=_blank>Equals Operator</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#equals-operator-within-group" target=_blank>Equals Operator Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#equals-operator-within-modular-blocks" target=_blank>Equals Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#not-equals-operator" target=_blank>Not-equals Operator</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#not-equals-operator-within-group" target=_blank>Not-equals Operator Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#not-equals-operator-within-modular-blocks" target=_blank>Not-equals Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#array-equals-operator" target=_blank>Array Equals Operator</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#array-equals-operator-within-group" target=_blank>Array Equals Operator Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#array-equals-operator-within-modular-blocks" target=_blank>Array Equals Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#array-not-equals-operator" target=_blank>Array Not-equals Operator</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#array-not-equals-operator-within-group" target=_blank>Array Not-equals Operator Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#array-not-equals-operator-within-modular-blocks" target=_blank>Array Not-equals Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#include-reference" target=_blank>Include Reference</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#include-reference-within-group" target=_blank>Include Reference Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#include-reference-within-modular-blocks" target=_blank>Include Reference Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#reference-search-equals" target=_blank>Reference Search Equals</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#reference-search-equals-within-group" target=_blank>Reference Search Equals Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#reference-search-equals-within-modular-blocks" target=_blank>Reference Search Equals Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#reference-search-not-equals" target=_blank>Reference Search Not-equals</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#reference-search-not-equals-within-group" target=_blank>Reference Search Not-equals Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#reference-search-not-equals-within-modular-blocks" target=_blank>Reference Search Not-equals Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#search-by-regex" target=_blank>Search by Regex</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#search-by-regex-within-group" target=_blank>Search By Regex Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#search-by-regex-within-modular-blocks" target=_blank>Search by Regex Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#and-operator" target=_blank>AND operator</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#and-operator-within-group" target=_blank>AND Operator Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#and-operator-within-modular-blocks" target=_blank>AND Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#or-operator" target=_blank>OR Operator</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#or-operator-within-group" target=_blank>OR Operator Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#or-operator-within-modular-blocks" target=_blank>OR Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#less-than" target=_blank>Less Than</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#less-than-within-group" target=_blank>Less Than Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#less-than-operator-within-modular-blocks" target=_blank>Less Than Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#less-than-or-equal-to" target=_blank>Less Than or Equal To</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#less-than-or-equal-to-within-group" target=_blank>Less Than Or Equal To Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#less-than-or-equal-to-operator-within-modular-blocks" target=_blank>Less Than Or Equal To Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#greater-than" target=_blank>Greater Than</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#greater-than-within-group" target=_blank>Greater Than Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#greater-than-operator-within-modular-blocks" target=_blank>Greater Than Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#greater-than-or-equal-to" target=_blank>Greater Than or Equal To</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#greater-than-or-equal-to-within-group" target=_blank>Greater Than Or Equal To Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#greater-than-or-equal-to-operator-within-modular-blocks" target=_blank>Greater Than Or Equal To Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#limit" target=_blank>Limit</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#skip" target=_blank>Skip</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#order-by-asc" target=_blank>Order by asc</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#order-by-asc-operator-within-group" target=_blank>Order by asc Operator Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#order-by-desc" target=_blank>Order by desc</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#order-by-desc-within-group" target=_blank>Order By desc Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#order-by-desc-operator-within-modular-blocks" target=_blank>Order by desc Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#exists" target=_blank>Exists</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#exists-within-group" target=_blank>Exists Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#exists-operator-within-modular-blocks" target=_blank>Exists Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#only-operator" target=_blank>Only operator</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#only-operator-within-group" target=_blank>Only Operator Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#only-operator-within-modular-blocks" target=_blank>Only Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#exclude-operator" target=_blank>Exclude operator</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#exclude-operator-within-group" target=_blank>Exclude Operator Within Group</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#exclude-operator-within-modular-blocks" target=_blank>Exclude Operator Within Modular Blocks</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#count" target=_blank>Count</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#pagination" target=_blank>Pagination</a></li></ul><p><strong>Note</strong>: The parameter values present here correspond to the AWS North America Region. To find the values corresponding to other regions, please refer to the <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/">Content Delivery API</a> doc.<strong></strong></p>
+      operationId: getallentries|equalsoperator|equalsoperatorwithingroup|equalsoperatorwithinmodularblocks|not-equalsoperator.....
+      parameters:
+      - explode: false
+        in: path
+        name: content_type_uid
+        required: true
+        schema:
+          example: product
+          type: string
+        style: simple
+      - description: Enter the code of the language of which the entries needs to
+          be included. Only the entries published in this locale will be displayed.
+        explode: true
+        in: query
+        name: locale
+        required: false
+        schema:
+          example: en-us
+          type: string
+        style: form
+      - description: Enter 'true' to include the published localized content from
+          the fallback locale when the specified locale does not contain published
+          content.
+        explode: true
+        in: query
+        name: include_fallback
+        required: false
+        schema:
+          example: "true"
+          type: string
+        style: form
+      - description: Set this to true to include the _branch top-level key in the
+          response. This key states the unique ID of the branch where the concerned
+          Contentstack module resides.
+        explode: true
+        in: query
+        name: include_branch
+        required: false
+        schema:
+          example: "false"
+          type: string
+        style: form
+      - description: Enter the actual query that will be executed to retrieve entries.
+          This query should be in JSON format.
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          example: "{\"title\": \"Redmi 3S\"}"
+          type: string
+        style: form
+      - description: Enter the actual query that will be executed to retrieve entries.
+          This query should be in JSON format.
+        explode: true
+        in: query
+        name: "include[]"
+        required: false
+        schema:
+          example: categories
+          type: string
+        style: form
+      - description: Enter the maximum number of entries to be returned.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          example: "2"
+          type: string
+        style: form
+      - description: Enter the number of entries to be skipped.
+        explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          example: "2"
+          type: string
+        style: form
+      - description: Enter the actual query that will be executed to retrieve entries.
+          This query should be in JSON format.
+        explode: true
+        in: query
+        name: asc
+        required: false
+        schema:
+          example: price_in_usd
+          type: string
+        style: form
+      - description: Enter the actual query that will be executed to retrieve entries.
+          This query should be in JSON format.
+        explode: true
+        in: query
+        name: desc
+        required: false
+        schema:
+          example: price_in_usd
+          type: string
+        style: form
+      - description: Enter the actual query that will be executed to retrieve entries.
+          This query should be in JSON format.
+        explode: true
+        in: query
+        name: "only[BASE][]"
+        required: false
+        schema:
+          example: price_in_usd
+          type: string
+        style: form
+      - description: Enter the actual query that will be executed to retrieve entries.
+          This query should be in JSON format.
+        explode: true
+        in: query
+        name: "except[BASE][]"
+        required: false
+        schema:
+          example: price_in_usd
+          type: string
+        style: form
+      - description: Enter 'true'&nbsp;to get the total count of the entries.
+        explode: true
+        in: query
+        name: include_count
+        required: false
+        schema:
+          example: "true"
+          type: string
+        style: form
+      responses:
+        "200":
+          description: ""
+      security:
+      - api_key: []
+        access_token: []
+        environment: []
+      summary: Get all entries | Equals Operator | Equals Operator Within Group |
+        Equals Operator Within Modular Blocks | Not-equals Operator.....
+      tags:
+      - Queries
+  /v3/content_types/{content_type_uid}/entries/{entry_uid}:
+    get:
+      description: |-
+        <p>The <code>Get a single entry</code> request fetches a particular entry of a content type.</p><p>To use the API Request, you'll need to use the <a href="https://www.contentstack.com/docs/developers/create-tokens/about-delivery-tokens">Delivery Token</a> of the respective environment.<br>Read more about it in <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#authentication">Authentication</a>.
+        </p><p>For more information, refer to the <a target=_blank href=https://www.contentstack.com/docs/developers/apis/content-delivery-api/#get-a-single-entry>Single Entry</a> API Reference document</p><p><strong>Note</strong>: The parameter values present here correspond to the AWS North America Region. To find the values corresponding to other regions, please refer to the <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/">Content Delivery API</a> doc.<strong></strong></p>
+      operationId: getasingleentry
+      parameters:
+      - explode: false
+        in: path
+        name: content_type_uid
+        required: true
+        schema:
+          example: product
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: entry_uid
+        required: true
+        schema:
+          example: blta250054cfa4f5aab
+          type: string
+        style: simple
+      - description: Enter the latest published version number. Passing a draft version
+          number will return a blank response.
+        explode: true
+        in: query
+        name: version
+        required: false
+        schema:
+          example: "4"
+          type: string
+        style: form
+      - description: Enter the code of the language of which you want to include&nbsp;the
+          entries. Only the published localized entries will be displayed.
+        explode: true
+        in: query
+        name: locale
+        required: false
+        schema:
+          example: en-us
+          type: string
+        style: form
+      - description: Enter 'true' to include the published localized content from
+          the fallback locale when the specified locale does not contain published
+          content.
+        explode: true
+        in: query
+        name: include_fallback
+        required: false
+        schema:
+          example: "true"
+          type: string
+        style: form
+      - description: Set this to true to include the _branch top-level key in the
+          response. This key states the unique ID of the branch where the concerned
+          Contentstack module resides.
+        explode: true
+        in: query
+        name: include_branch
+        required: false
+        schema:
+          example: "false"
+          type: string
+        style: form
+      responses:
+        "200":
+          description: ""
+      security:
+      - api_key: []
+        access_token: []
+        environment: []
+      summary: Get a single entry
+      tags:
+      - Entries
+  /v3/assets:
+    get:
+      description: |-
+        <p>The <code>Get all assets</code> request fetches the list of all the assets of a particular stack. It returns the content of each asset in JSON format. You can also specify the environment of which you want to get the assets.</p><p>To use the API Request, you'll need to use the <a href="https://www.contentstack.com/docs/developers/create-tokens/about-delivery-tokens">Delivery Token</a> of the respective environment.<br>Read more about it in <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#authentication">Authentication</a>.
+        </p><p>For more information, refer to the <a target=_blank href=https://www.contentstack.com/docs/developers/apis/content-delivery-api/#get-all-assets>All Assets</a> API Reference document</p><p><strong>Note</strong>: The parameter values present here correspond to the AWS North America Region. To find the values corresponding to other regions, please refer to the <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/">Content Delivery API</a> doc.<strong></strong></p>
+      operationId: getallassets
+      parameters:
+      - description: Enter 'true' to include the published asset details from the
+          fallback locale when the specified locale does not contain published content.
+        explode: true
+        in: query
+        name: include_fallback
+        required: false
+        schema:
+          example: "true"
+          type: string
+        style: form
+      - description: Enter 'true' to include the relative URLs of the assets in the
+          response.
+        explode: true
+        in: query
+        name: relative_urls
+        required: false
+        schema:
+          example: "false"
+          type: string
+        style: form
+      - description: "Enter 'true' to include the dimensions (height and width) of\
+          \ the image in the response. Supported image types: JPG, GIF, PNG, WebP,\
+          \ BMP, TIFF, SVG, and PSD."
+        explode: true
+        in: query
+        name: include_dimension
+        required: false
+        schema:
+          example: "true"
+          type: string
+        style: form
+      - description: Set this to true to include the _branch top-level key in the
+          response. This key states the unique ID of the branch where the concerned
+          Contentstack module resides.
+        explode: true
+        in: query
+        name: include_branch
+        required: false
+        schema:
+          example: "false"
+          type: string
+        style: form
+      responses:
+        "200":
+          description: ""
+      security:
+      - api_key: []
+        access_token: []
+        environment: []
+      summary: Get all assets
+      tags:
+      - Assets
+  /v3/assets/{asset_uid}:
+    get:
+      description: |-
+        <p>The <code>Get a single asset</code> request fetches the latest version of a specific asset of a particular stack.</p><p>To use the API Request, you'll need to use the <a href="https://www.contentstack.com/docs/developers/create-tokens/about-delivery-tokens">Delivery Token</a> of the respective environment.<br>Read more about it in <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#authentication">Authentication</a>.
+        </p><p>For more information, refer to the <a target=_blank href=https://www.contentstack.com/docs/developers/apis/content-delivery-api/#get-a-single-asset>Single Asset</a> API Reference document</p><p><strong>Note</strong>: The parameter values present here correspond to the AWS North America Region. To find the values corresponding to other regions, please refer to the <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/">Content Delivery API</a> doc.<strong></strong></p>
+      operationId: getasingleasset
+      parameters:
+      - explode: false
+        in: path
+        name: asset_uid
+        required: true
+        schema:
+          example: blt19c34e5374418484
+          type: string
+        style: simple
+      - description: "Specify the version number of the asset that you want to retrieve.\
+          \ To retrieve a specific version, keep the environment parameter blank.&nbsp;If\
+          \ the version is not specified, the details of the latest version will be\
+          \ retrieved."
+        explode: true
+        in: query
+        name: version
+        required: false
+        schema:
+          example: "1"
+          type: string
+        style: form
+      - description: Enter 'true' to include published asset details from the fallback
+          locale when the specified locale does not contain published information.
+        explode: true
+        in: query
+        name: include_fallback
+        required: false
+        schema:
+          example: "true"
+          type: string
+        style: form
+      - description: "Enter 'true' to include the dimensions (height and width)&nbsp;of\
+          \ the image&nbsp;in the response.&nbsp;Supported image&nbsp;types: JPG,\
+          \ GIF, PNG, WebP, BMP, TIFF, SVG, and PSD."
+        explode: true
+        in: query
+        name: include_dimension
+        required: false
+        schema:
+          example: "true"
+          type: string
+        style: form
+      - description: Enter 'true' to include the relative URL of the asset in the
+          response.
+        explode: true
+        in: query
+        name: relative_urls
+        required: false
+        schema:
+          example: "false"
+          type: string
+        style: form
+      - description: Set this to true to include the _branch top-level key in the
+          response. This key states the unique ID of the branch where the concerned
+          Contentstack module resides.
+        explode: true
+        in: query
+        name: include_branch
+        required: false
+        schema:
+          example: "false"
+          type: string
+        style: form
+      responses:
+        "200":
+          description: ""
+      security:
+      - api_key: []
+        access_token: []
+        environment: []
+      summary: Get a single asset
+      tags:
+      - Assets
+  /v3/stacks/sync:
+    get:
+      description: |-
+        <p>For more information on the individual requests, click on their respective documentation links below.</p>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#initial-sync" target=_blank>Initial Sync</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#sync-using-pagination-token" target=_blank>Sync using pagination token</a></li></ul>
+        <ul><li><a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/#subsequent-sync" target=_blank>Subsequent Sync</a></li></ul><p><strong>Note</strong>: The parameter values present here correspond to the AWS North America Region. To find the values corresponding to other regions, please refer to the <a href="https://www.contentstack.com/docs/developers/apis/content-delivery-api/">Content Delivery API</a> doc.<strong></strong></p>
+      operationId: initialsync|syncusingpaginationtoken|subsequentsync
+      parameters:
+      - description: Enter ‘true’ to perform a complete sync of all your app data.
+        explode: true
+        in: query
+        name: init
+        required: false
+        schema:
+          example: "true"
+          type: string
+        style: form
+      - description: "Enter the content type UID, if you want to sync entries of specific\
+          \ content types."
+        explode: true
+        in: query
+        name: content_type_uid
+        required: false
+        schema:
+          example: product
+          type: string
+        style: form
+      - description: Enter the locale to retrieve and sync the content published on
+          a specific locale.
+        explode: true
+        in: query
+        name: locale
+        required: false
+        schema:
+          example: en-us
+          type: string
+        style: form
+      - description: "Specify the start date, if you want to retrieve and sync data\
+          \ starting from a specific date."
+        explode: true
+        in: query
+        name: start_from
+        required: false
+        schema:
+          example: 2018-01-14T00:00:00.000Z
+          type: string
+        style: form
+      - description: Enter the type(s) of content you want to retrieve and sync. You
+          can pass multiple types as comma-separated values.
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          example: "entry_published, entry_unpublished, asset_published"
+          type: string
+        style: form
+      - description: Enter the pagination token that you received in the response
+          body of the previous sync process.
+        explode: true
+        in: query
+        name: pagination_token
+        required: false
+        schema:
+          example: bltd8d8b3d427917796048622
+          type: string
+        style: form
+      - description: Enter the sync token that you received in the response body of
+          the previous completed Synchronization process to get the delta updates
+        explode: true
+        in: query
+        name: sync_token
+        required: false
+        schema:
+          example: blt42d8feee86ff1eb6d0de5c
+          type: string
+        style: form
+      responses:
+        "200":
+          description: ""
+      security:
+      - api_key: []
+        access_token: []
+        environment: []
+      summary: Initial Sync | Sync using pagination token | Subsequent Sync
+      tags:
+      - Synchronization
+components:
+  parameters:
+    content_type_uid:
+      explode: false
+      in: path
+      name: content_type_uid
+      required: true
+      schema:
+        example: product
+        type: string
+      style: simple
+    global_field_uid:
+      explode: false
+      in: path
+      name: global_field_uid
+      required: true
+      schema:
+        example: seo
+        type: string
+      style: simple
+    entry_uid:
+      explode: false
+      in: path
+      name: entry_uid
+      required: true
+      schema:
+        example: blta250054cfa4f5aab
+        type: string
+      style: simple
+    asset_uid:
+      explode: false
+      in: path
+      name: asset_uid
+      required: true
+      schema:
+        example: blt19c34e5374418484
+        type: string
+      style: simple
+  schemas: {}
+  securitySchemes:
+    api_key:
+      description: contentstack api_key
+      in: header
+      name: api_key
+      type: apiKey
+    access_token:
+      description: contentstack delivery token
+      in: header
+      name: access_token
+      type: apiKey
+    environment:
+      description: environment
+      in: query
+      name: environment
+      type: apiKey

@@ -1,25 +1,26 @@
 package cmd
 
 import (
+	"context"
 	"github.com/davidalpert/go-contentstack/internal/cfg"
+	"github.com/davidalpert/go-contentstack/v1/management"
 	"github.com/davidalpert/go-printers/v1"
 	"github.com/spf13/cobra"
 )
 
-type ConfigGetOptions struct {
+type GlobalGetOptions struct {
 	*printers.PrinterOptions
-	Values *cfg.Config
+	Config cfg.Config
 }
 
-func NewConfigGetOptions(s printers.IOStreams) *ConfigGetOptions {
-	return &ConfigGetOptions{
+func NewGlobalGetOptions(s printers.IOStreams) *GlobalGetOptions {
+	return &GlobalGetOptions{
 		PrinterOptions: printers.NewPrinterOptions().WithStreams(s).WithDefaultOutput("yaml"),
-		Values:         &cfg.Config{},
 	}
 }
 
-func NewCmdConfigGet(s printers.IOStreams) *cobra.Command {
-	o := NewConfigGetOptions(s)
+func NewCmdGlobalGet(s printers.IOStreams) *cobra.Command {
+	o := NewGlobalGetOptions(s)
 	var cmd = &cobra.Command{
 		Use:   "get",
 		Short: "show current configuration values",
@@ -41,8 +42,8 @@ func NewCmdConfigGet(s printers.IOStreams) *cobra.Command {
 }
 
 // Complete the options
-func (o *ConfigGetOptions) Complete(cmd *cobra.Command, args []string) error {
-	if err := cfg.ReadMergedInto(o.Values); err != nil {
+func (o *GlobalGetOptions) Complete(cmd *cobra.Command, args []string) error {
+	if err := cfg.ReadMergedInto(&o.Config); err != nil {
 		return err
 	}
 
@@ -50,15 +51,33 @@ func (o *ConfigGetOptions) Complete(cmd *cobra.Command, args []string) error {
 }
 
 // Validate the options
-func (o *ConfigGetOptions) Validate() error {
+func (o *GlobalGetOptions) Validate() error {
+	if err := o.Config.Validate(); err != nil {
+		return err
+	}
+
 	return o.PrinterOptions.Validate()
 }
 
 // Run the command
-func (o *ConfigGetOptions) Run() error {
+func (o *GlobalGetOptions) Run() error {
+	clientConfig := management.NewConfiguration()
+	clientConfig.Servers = make([]management.ServerConfiguration, 1)
+	clientConfig.Servers[0].URL = o.Config.ContentStack.ManagementApi.Host
+
+	client := management.NewAPIClient(clientConfig)
+
+	ctx := context.Background()
+	ctx = context.WithValue(ctx, management.ContextAPIKeys, map[string]management.APIKey{
+		"access_token": {Key: o.Config.ContentStack.ManagementApi.Token},
+		"api_key":      {Key: o.Config.ContentStack.ManagementApi.Token},
+	})
+
+	client.GlobalFieldsApi.Getallglobalfields(ctx).Execute()
+
 	if o.FormatCategory() == "table" || o.FormatCategory() == "csv" {
 		o.WithDefaultOutput("json")
 	}
 
-	return o.WriteOutput(*o.Values)
+	return o.WriteOutput(clientConfig)
 }

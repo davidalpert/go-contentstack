@@ -5,16 +5,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewCmdConfig(s printers.IOStreams) *cobra.Command {
+func NewCmdGlobal(s printers.IOStreams) *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:     "config",
-		Aliases: []string{"cfg", "c"},
-		Short:   "configuration subcommands",
+		Use:     "global",
+		Aliases: []string{"g"},
+		Short:   "global field subcommands",
 		//Args:    cobra.NoArgs,
 	}
 
-	cmd.AddCommand(NewCmdConfigGet(s))
-	cmd.AddCommand(NewCmdConfigSetup(s))
+	cmd.AddCommand(NewCmdGlobalGet(s))
 
 	return cmd
 }
