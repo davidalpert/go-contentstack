@@ -13,10 +13,10 @@ func NewCmdContentType(s printers.IOStreams) *cobra.Command {
 		//Args:    cobra.NoArgs,
 	}
 
-	cmd.AddCommand(NewCmdContentTypeCreate(s))
+	//cmd.AddCommand(NewCmdContentTypeCreate(s))
 	cmd.AddCommand(NewCmdContentTypeRead(s))
-	cmd.AddCommand(NewCmdContentTypeUpdate(s))
-	cmd.AddCommand(NewCmdContentTypeDelete(s))
+	//cmd.AddCommand(NewCmdContentTypeUpdate(s))
+	//cmd.AddCommand(NewCmdContentTypeDelete(s))
 
 	return cmd
 }

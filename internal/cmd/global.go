@@ -13,10 +13,10 @@ func NewCmdGlobal(s printers.IOStreams) *cobra.Command {
 		//Args:    cobra.NoArgs,
 	}
 
-	cmd.AddCommand(NewCmdGlobalCreate(s))
+	//cmd.AddCommand(NewCmdGlobalCreate(s))
 	cmd.AddCommand(NewCmdGlobalRead(s))
-	cmd.AddCommand(NewCmdGlobalUpdate(s))
-	cmd.AddCommand(NewCmdGlobalDelete(s))
+	//cmd.AddCommand(NewCmdGlobalUpdate(s))
+	//cmd.AddCommand(NewCmdGlobalDelete(s))
 
 	return cmd
 }
