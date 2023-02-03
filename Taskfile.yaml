@@ -120,7 +120,7 @@ tasks:
       - task: gen
         vars:
           VERSION: "{{ .NEXT_VERSION }}"
-      - task: features
+      # - task: features
       - git add -f internal/version/detail.go
       - git-chglog --next-tag v{{ .NEXT_VERSION }} --output CHANGELOG.md
       - git add -f CHANGELOG.md
