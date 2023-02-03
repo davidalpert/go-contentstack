@@ -45,16 +45,6 @@ tasks:
       # - grep "\"{{ .VERSION }}\"" internal/version/detail.go
       - '[[ -n $SKIP_GEN ]]'
 
-  update-openapi-client:
-    desc: update the ContentStack OpenAPI client
-    run: once
-    cmds:
-      - rm -rf ./v1/management/
-      - docker run --rm -v $PWD:/local openapitools/openapi-generator-cli generate --git-user-id {{ .REPO_OWNER }} --git-repo-id {{ .REPO_NAME }}/v1 -i /local/v1/.src/management/cda-openapi-3.json -g go -c /local/v1/.src/management/config.json -o /local/v1/management
-      - rm ./v1/management/go.mod
-      - rm ./v1/management/go.sum
-      - go mod tidy
-
 #  bundle:
 #    desc: install ruby gems
 #    run: once

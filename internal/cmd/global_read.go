@@ -1,26 +1,27 @@
 package cmd
 
 import (
-	"context"
 	"github.com/davidalpert/go-contentstack/internal/cfg"
 	"github.com/davidalpert/go-contentstack/v1/management"
 	"github.com/davidalpert/go-printers/v1"
 	"github.com/spf13/cobra"
 )
 
-type GlobalGetOptions struct {
+type GlobalReadOptions struct {
 	*printers.PrinterOptions
 	Config cfg.Config
+	Client *management.Client
+	UID    string
 }
 
-func NewGlobalGetOptions(s printers.IOStreams) *GlobalGetOptions {
-	return &GlobalGetOptions{
+func NewGlobalReadOptions(s printers.IOStreams) *GlobalReadOptions {
+	return &GlobalReadOptions{
 		PrinterOptions: printers.NewPrinterOptions().WithStreams(s).WithDefaultOutput("yaml"),
 	}
 }
 
-func NewCmdGlobalGet(s printers.IOStreams) *cobra.Command {
-	o := NewGlobalGetOptions(s)
+func NewCmdGlobalRead(s printers.IOStreams) *cobra.Command {
+	o := NewGlobalReadOptions(s)
 	var cmd = &cobra.Command{
 		Use:   "get",
 		Short: "show current configuration values",
@@ -37,21 +38,28 @@ func NewCmdGlobalGet(s printers.IOStreams) *cobra.Command {
 	}
 
 	o.AddPrinterFlags(cmd.Flags())
+	cmd.Flags().StringVarP(&o.UID, "uid", "u", "", "uid of a single global field")
 
 	return cmd
 }
 
 // Complete the options
-func (o *GlobalGetOptions) Complete(cmd *cobra.Command, args []string) error {
+func (o *GlobalReadOptions) Complete(cmd *cobra.Command, args []string) error {
 	if err := cfg.ReadMergedInto(&o.Config); err != nil {
 		return err
 	}
+
+	c, err := management.NewClient(&o.Config.ContentStack.ManagementApi)
+	if err != nil {
+		return err
+	}
+	o.Client = c
 
 	return nil
 }
 
 // Validate the options
-func (o *GlobalGetOptions) Validate() error {
+func (o *GlobalReadOptions) Validate() error {
 	if err := o.Config.Validate(); err != nil {
 		return err
 	}
@@ -60,24 +68,22 @@ func (o *GlobalGetOptions) Validate() error {
 }
 
 // Run the command
-func (o *GlobalGetOptions) Run() error {
-	clientConfig := management.NewConfiguration()
-	clientConfig.Servers = make([]management.ServerConfiguration, 1)
-	clientConfig.Servers[0].URL = o.Config.ContentStack.ManagementApi.Host
-
-	client := management.NewAPIClient(clientConfig)
-
-	ctx := context.Background()
-	ctx = context.WithValue(ctx, management.ContextAPIKeys, map[string]management.APIKey{
-		"access_token": {Key: o.Config.ContentStack.ManagementApi.Token},
-		"api_key":      {Key: o.Config.ContentStack.ManagementApi.Token},
-	})
-
-	client.GlobalFieldsApi.Getallglobalfields(ctx).Execute()
-
+func (o *GlobalReadOptions) Run() error {
 	if o.FormatCategory() == "table" || o.FormatCategory() == "csv" {
 		o.WithDefaultOutput("json")
 	}
 
-	return o.WriteOutput(clientConfig)
+	if o.UID != "" {
+		r, err := o.Client.GetOneGlobalField(o.UID)
+		if err != nil {
+			return err
+		}
+		return o.WriteOutput(r)
+	}
+
+	r, err := o.Client.GetAllGlobalFields()
+	if err != nil {
+		return err
+	}
+	return o.WriteOutput(r)
 }

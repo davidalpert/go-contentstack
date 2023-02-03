@@ -2,6 +2,7 @@ package cfg
 
 import (
 	"fmt"
+	"github.com/davidalpert/go-contentstack/v1/management"
 	"github.com/davidalpert/go-printers/v1"
 	"github.com/ilyakaznacheev/cleanenv"
 	"os"
@@ -12,20 +13,14 @@ import (
 var File string
 var Dir string
 
-type ManagementApiConfig struct {
-	Host  string `yaml:"host" env:"CS_MANAGEMENT_API_HOST" env-default:"https://api.contentstack.io"`
-	Key   string `yaml:"key" env:"CS_MANAGEMENT_API_KEY" env-default:""`
-	Token string `yaml:"token" env:"CS_MANAGEMENT_API_TOKEN" env-default:""`
-}
-
 type DeliveryApiConfig struct {
 	Host string `yaml:"delivery_api_host" env:"CS_DELIVERY_API_HOST" env-default:"https://cdn.contentstack.io"`
 }
 
 type ContentStackConfig struct {
-	DeliveryApi   DeliveryApiConfig   `yaml:"delivery_api"`
-	RegionCode    string              `yaml:"region_code" env:"CS_REGION" env-default:"NA"`
-	ManagementApi ManagementApiConfig `yaml:"management_api"`
+	DeliveryApi   DeliveryApiConfig        `yaml:"delivery_api"`
+	RegionCode    string                   `yaml:"region_code" env:"CS_REGION" env-default:"NA"`
+	ManagementApi management.Configuration `yaml:"management_api"`
 }
 
 type Config struct {
