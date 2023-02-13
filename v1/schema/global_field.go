@@ -64,6 +64,7 @@ type FieldMetadata struct {
 	Description  string      `json:"description"`
 	Default      *bool       `json:"_default,omitempty"`
 	DefaultValue interface{} `json:"default_value,omitempty"`
+	Placeholder  *string     `json:"placeholder,omitempty"`
 	Instruction  *string     `json:"instruction,omitempty"`
 	Version      *int64      `json:"version,omitempty"`
 }
