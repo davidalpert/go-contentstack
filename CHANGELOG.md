@@ -32,6 +32,12 @@
 ## Changelog
 
 
+<a name="v0.2.1"></a>
+## [v0.2.1] - 2023-02-12
+### Build
+- goreleaser can't call make without a Makefile
+
+
 <a name="v0.2.0"></a>
 ## [v0.2.0] - 2023-02-12
 ### Bug Fixes
@@ -69,7 +75,8 @@
 - openapitools/openapi-generator-client
 
 
-[Unreleased]: https://github.com/davidalpert/go-contentstack/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/davidalpert/go-contentstack/compare/v0.2.1...HEAD
+[v0.2.1]: https://github.com/davidalpert/go-contentstack/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/davidalpert/go-contentstack/compare/v0.1.0...v0.2.0
 [license-shield]: https://img.shields.io/badge/License-GPLv3-blue.svg
 [license-url]: https://www.gnu.org/licenses/gpl-3.0
