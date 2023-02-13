@@ -11,7 +11,7 @@ type GetContentTypesResponse struct {
 }
 
 func (c *Client) GetAllContentTypes(includeCount int64, includeGlobalFieldSchema bool) ([]schema.ContentType, error) {
-	endpoint := fmt.Sprintf("/v3/content_types?include_count=%d&include_global_field_schema=%b&include_branch=false", includeCount, includeGlobalFieldSchema)
+	endpoint := fmt.Sprintf("/v3/content_types?include_count=%d&include_global_field_schema=%t&include_branch=false", includeCount, includeGlobalFieldSchema)
 	var r GetContentTypesResponse
 	resp, err := c.client.R().SetResult(&r).Get(endpoint)
 	if err != nil {
