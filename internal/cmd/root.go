@@ -50,6 +50,7 @@ func NewRootCmd(s printers.IOStreams) *cobra.Command {
 	// Register subcommands
 	rootCmd.AddCommand(NewCmdConfig(s))
 	rootCmd.AddCommand(NewCmdContentType(s))
+	rootCmd.AddCommand(NewCmdEnvironment(s))
 	rootCmd.AddCommand(NewCmdGlobal(s))
 	rootCmd.AddCommand(NewCmdVersion(s))
 
