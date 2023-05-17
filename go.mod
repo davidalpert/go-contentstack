@@ -6,7 +6,7 @@ require (
 	github.com/AlecAivazis/survey/v2 v2.3.6
 	github.com/apex/log v1.9.0
 	github.com/davidalpert/go-printers v0.3.0
-	github.com/git-chglog/git-chglog v0.15.3
+	github.com/git-chglog/git-chglog v0.15.4
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/go-task/task/v3 v3.24.0
 	github.com/goreleaser/goreleaser v0.134.0
