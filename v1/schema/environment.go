@@ -14,7 +14,7 @@ type LocaleURLPair struct {
 type Environment struct {
 	Name          string          `json:"name"`
 	Urls          []LocaleURLPair `json:"urls"`
-	Uid           string          `json:"uid"`
+	UID           string          `json:"uid"`
 	CreatedBy     string          `json:"created_by"`
 	UpdatedBy     string          `json:"updated_by"`
 	CreatedAt     time.Time       `json:"created_at"`
