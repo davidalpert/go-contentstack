@@ -19,8 +19,8 @@ type Environment struct {
 	UpdatedBy     string          `json:"updated_by"`
 	CreatedAt     time.Time       `json:"created_at"`
 	UpdatedAt     time.Time       `json:"updated_at"`
-	ACL           []interface{}   `json:"ACL"`
-	Tags          []interface{}   `json:"tags"`
+	ACL           interface{}     `json:"ACL"`
+	Tags          interface{}     `json:"tags"`
 	Version       int             `json:"_version"`
 	DeployContent bool            `json:"deploy_content"`
 }
