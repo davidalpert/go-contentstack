@@ -52,6 +52,7 @@ func NewRootCmd(s printers.IOStreams) *cobra.Command {
 	rootCmd.AddCommand(NewCmdContentType(s))
 	rootCmd.AddCommand(NewCmdEnvironment(s))
 	rootCmd.AddCommand(NewCmdGlobal(s))
+	rootCmd.AddCommand(NewCmdLocale(s))
 	rootCmd.AddCommand(NewCmdVersion(s))
 
 	rootCmd.PersistentFlags().StringVarP(&cfg.File, "config", "c", cfg.File, "config file to use")
