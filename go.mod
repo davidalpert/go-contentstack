@@ -8,11 +8,12 @@ require (
 	github.com/davidalpert/go-printers v0.3.0
 	github.com/git-chglog/git-chglog v0.15.4
 	github.com/go-resty/resty/v2 v2.7.0
-	github.com/go-task/task/v3 v3.24.0
+	github.com/go-task/task/v3 v3.25.0
 	github.com/goreleaser/goreleaser v1.18.2
 	github.com/ilyakaznacheev/cleanenv v1.4.2
 	github.com/kisielk/godepgraph v0.0.0-20221115040737-2d0831789458
 	github.com/mitchellh/go-homedir v1.1.0
+	github.com/olekukonko/tablewriter v0.0.5
 	github.com/siderolabs/conform v0.1.0-alpha.27
 	github.com/smartystreets/goconvey v1.8.0
 	github.com/spf13/cobra v1.7.0
@@ -209,7 +210,6 @@ require (
 	github.com/muesli/roff v0.1.0 // indirect
 	github.com/muesli/termenv v0.15.1 // indirect
 	github.com/oklog/ulid v1.3.1 // indirect
-	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
 	github.com/opencontainers/image-spec v1.1.0-rc2 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
@@ -254,7 +254,7 @@ require (
 	golang.org/x/exp v0.0.0-20230212135524-a684f29349b6 // indirect
 	golang.org/x/mod v0.10.0 // indirect
 	golang.org/x/oauth2 v0.7.0 // indirect
-	golang.org/x/sync v0.1.0 // indirect
+	golang.org/x/sync v0.2.0 // indirect
 	golang.org/x/sys v0.7.0 // indirect
 	golang.org/x/term v0.7.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
