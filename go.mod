@@ -3,7 +3,7 @@ module github.com/davidalpert/go-contentstack
 go 1.18
 
 require (
-	github.com/AlecAivazis/survey/v2 v2.3.6
+	github.com/AlecAivazis/survey/v2 v2.3.7
 	github.com/apex/log v1.9.0
 	github.com/davidalpert/go-printers v0.3.0
 	github.com/git-chglog/git-chglog v0.15.4
