@@ -8,7 +8,7 @@ require (
 	github.com/davidalpert/go-printers v0.3.0
 	github.com/git-chglog/git-chglog v0.15.4
 	github.com/go-resty/resty/v2 v2.7.0
-	github.com/go-task/task/v3 v3.25.0
+	github.com/go-task/task/v3 v3.28.0
 	github.com/goreleaser/goreleaser v1.18.2
 	github.com/ilyakaznacheev/cleanenv v1.4.2
 	github.com/kisielk/godepgraph v0.0.0-20221115040737-2d0831789458
@@ -254,9 +254,9 @@ require (
 	golang.org/x/exp v0.0.0-20230212135524-a684f29349b6 // indirect
 	golang.org/x/mod v0.10.0 // indirect
 	golang.org/x/oauth2 v0.7.0 // indirect
-	golang.org/x/sync v0.2.0 // indirect
-	golang.org/x/sys v0.7.0 // indirect
-	golang.org/x/term v0.7.0 // indirect
+	golang.org/x/sync v0.3.0 // indirect
+	golang.org/x/sys v0.10.0 // indirect
+	golang.org/x/term v0.10.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	golang.org/x/tools v0.8.0 // indirect
@@ -276,7 +276,7 @@ require (
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	mvdan.cc/sh/v3 v3.6.0 // indirect
+	mvdan.cc/sh/v3 v3.7.0 // indirect
 	olympos.io/encoding/edn v0.0.0-20201019073823-d3554ca0b0a3 // indirect
 	sigs.k8s.io/kind v0.17.0 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect
